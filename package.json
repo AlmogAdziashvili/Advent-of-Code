@@ -1,0 +1,30 @@
+{
+  "name": "advent-of-code-2021",
+  "version": "1.0.0",
+  "description": "> Advent of Code is an annual set of Christmas-themed computer programming challenges that follow an Advent calendar and can be solved using any programming language",
+  "main": "wallaby.js",
+  "scripts": {
+    "build": "tsc ./days/1/index",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AlmogAdziashvili/Advent-of-Code-2021.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/AlmogAdziashvili/Advent-of-Code-2021/issues"
+  },
+  "homepage": "https://github.com/AlmogAdziashvili/Advent-of-Code-2021#readme",
+  "dependencies": {
+    "@types/axios": "^0.14.0",
+    "@types/chai": "^4.1.7",
+    "@types/mocha": "^5.2.5",
+    "@types/node": "^12.12.14",
+    "axios": "^0.19.0",
+    "chai": "^4.2.0",
+    "mocha": "^5.2.0",
+    "typescript": "^3.2.1"
+  }
+}

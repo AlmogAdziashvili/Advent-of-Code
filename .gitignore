@@ -1,0 +1,4 @@
+node_modules/
+days/**/input.txt
+days/**/input_example.txt
+days/**/puzzle-input.ts
