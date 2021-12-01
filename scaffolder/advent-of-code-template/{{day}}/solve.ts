@@ -1,7 +1,12 @@
 import { exampleInput, puzzleInput } from "./puzzle-input";
 import { assert } from 'chai';
 
-export const solve = (_arr: any[]): any => {
+export const solve1 = (_arr: any[]): any => {
+	const arr = [..._arr];
+	return arr;
+};
+
+export const solve2 = (_arr: any[]): any => {
 	const arr = [..._arr];
 	return arr;
 };
@@ -12,21 +17,34 @@ const processInput = (input: string): any => {
 			.map(n => n.trim())
 			.filter((v) => !!v)
 			// .map(Number);
-
 	return n;
 };
 
-describe('Day', () => {
+describe('Part 1', () => {
 	it('Test Case 1', () => {
-		const result = solve(processInput(exampleInput));
+		const result = solve1(processInput(exampleInput));
 		result; //?
-		assert.deepEqual(result, []);
+		assert.deepEqual(result, null);
 	});
 
 	it('Result', () => {
-		const result = solve(processInput(puzzleInput));
+		const result = solve1(processInput(puzzleInput));
 		result; //?
-		assert.deepEqual(result, []);
+		assert.deepEqual(result, null);
+	});
+});
+
+describe('Part 2', () => {
+	it('Test Case 1', () => {
+		const result = solve2(processInput(exampleInput));
+		result; //?
+		assert.deepEqual(result, null);
+	});
+
+	it('Result', () => {
+		const result = solve2(processInput(puzzleInput));
+		result; //?
+		assert.deepEqual(result, null);
 	});
 });
 

@@ -38,14 +38,14 @@ describe.skip('Part 1', () => {
 	});
 });
 
-describe.skip('Part 2', () => {
+describe('Part 2', () => {
 	it('Test Case 1', () => {
 		const result = solve2(processInput(exampleInput));
 		result; //?
 		assert.deepEqual(result, 5);
 	});
 
-	it('Result', () => {
+	it.skip('Result', () => {
 		const result = solve2(processInput(puzzleInput));
 		result; //?
 		assert.deepEqual(result, null);
