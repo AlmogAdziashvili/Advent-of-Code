@@ -3,48 +3,34 @@ import { assert } from 'chai';
 
 export const solve1 = (_arr: any[]): any => {
 	const arr = [..._arr];
-	let horizontalPosition = 0;
-	let depth = 0;
-	arr.forEach((line) => {
-		const [cmd, _value] = line.split(' ');
-		const value = parseInt(_value);
+	const finalPosition = arr.reduce(({ depth, horizontalPosition }, { cmd, amount }) => {
 		switch (cmd) {
 			case 'forward':
-				horizontalPosition += value;
-				break;
+				return { depth, horizontalPosition: horizontalPosition + amount };
 			case 'up':
-				depth -= value;
-				break
+				return { horizontalPosition, depth: depth - amount };
 			case 'down':
-				depth += value;
-				break;
+				return { horizontalPosition, depth: depth + amount };
 		}
-	});
-	return depth * horizontalPosition;
+	}, { depth: 0, horizontalPosition: 0 });
+
+	return finalPosition.depth * finalPosition.horizontalPosition;
 };
 
 export const solve2 = (_arr: any[]): any => {
 	const arr = [..._arr];
-	let horizontalPosition = 0;
-	let depth = 0;
-	let aim = 0;
-	arr.forEach((line) => {
-		const [cmd, _value] = line.split(' ');
-		const value = parseInt(_value);
+	const finalPosition = arr.reduce(({ depth, horizontalPosition, aim }, { cmd, amount }) => {
 		switch (cmd) {
 			case 'forward':
-				horizontalPosition += value;
-				depth += (aim * value);
-				break;
+				return { aim, depth: depth + (amount * aim), horizontalPosition: horizontalPosition + amount };
 			case 'up':
-				aim -= value;
-				break
+				return { horizontalPosition, depth, aim: aim - amount };
 			case 'down':
-				aim += value;
-				break;
+				return { horizontalPosition, depth, aim: aim + amount };
 		}
-	});
-	return depth * horizontalPosition;
+	}, { depth: 0, horizontalPosition: 0, aim: 0 });
+
+	return finalPosition.depth * finalPosition.horizontalPosition;
 };
 
 const processInput = (input: string): any => {
@@ -52,7 +38,7 @@ const processInput = (input: string): any => {
 		input.split('\n')
 			.map(n => n.trim())
 			.filter((v) => !!v)
-	// .map(Number);
+			.map(line => line.split(' ')).map(([cmd, amount]) => ({ cmd, amount: parseInt(amount) }));
 
 	return n;
 };
@@ -67,7 +53,7 @@ describe.skip('Part 1', () => {
 	it('Result', () => {
 		const result = solve1(processInput(puzzleInput));
 		result; //?
-		assert.deepEqual(result, null);
+		assert.deepEqual(result, 2187380);
 	});
 });
 
@@ -81,7 +67,7 @@ describe.skip('Part 2', () => {
 	it('Result', () => {
 		const result = solve2(processInput(puzzleInput));
 		result; //?
-		assert.deepEqual(result, null);
+		assert.deepEqual(result, 2086357770);
 	});
 });
 

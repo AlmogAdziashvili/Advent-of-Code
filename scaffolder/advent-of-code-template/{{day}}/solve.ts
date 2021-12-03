@@ -20,31 +20,23 @@ const processInput = (input: string): any => {
 	return n;
 };
 
-describe('Part 1', () => {
-	it('Test Case 1', () => {
-		const result = solve1(processInput(exampleInput));
-		result; //?
-		assert.deepEqual(result, null);
-	});
+it('Part 1', () => {
+	const testResult = solve1(processInput(exampleInput));
+	testResult; //?
+	assert.deepEqual(testResult, null);
 
-	it('Result', () => {
-		const result = solve1(processInput(puzzleInput));
-		result; //?
-		assert.deepEqual(result, null);
-	});
+	const result = solve1(processInput(puzzleInput));
+	result; //?
+	assert.deepEqual(result, null);
 });
 
-describe('Part 2', () => {
-	it('Test Case 1', () => {
-		const result = solve2(processInput(exampleInput));
-		result; //?
-		assert.deepEqual(result, null);
-	});
+it('Part 2', () => {
+	const testResult = solve2(processInput(exampleInput));
+	testResult; //?
+	assert.deepEqual(testResult, null);
 
-	it('Result', () => {
-		const result = solve2(processInput(puzzleInput));
-		result; //?
-		assert.deepEqual(result, null);
-	});
+	const result = solve2(processInput(puzzleInput));
+	result; //?
+	assert.deepEqual(result, null);
 });
 

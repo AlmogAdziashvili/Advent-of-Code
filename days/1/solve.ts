@@ -1,18 +1,18 @@
 import { exampleInput, puzzleInput } from "./puzzle-input";
 import { assert } from 'chai';
+import _ from 'lodash';
 
 export const solve1 = (_arr: any[]): any => {
 	const arr = [..._arr];
-	return arr.filter((a, i, b) => i > 0 ? b[i - 1] < a : false).length;
+	const isGreaterThanPrevious = (_, index, arr) => index > 0 && arr[index] > arr[index - 1];
+	return arr.filter(isGreaterThanPrevious).length;
 };
 
 export const solve2 = (_arr: any[]): any => {
 	const arr = [..._arr];
-	return arr
-		.filter((a, i, b) => i > 0
-			? (b[i - 1] + b[i - 2] + b[i - 3]) < (a + b[i - 1] + b[i - 2])
-			: false)
-		.length;
+	const arrGroupedByThreeConsecutiveItems = _.zip(arr, _.drop(arr), _.drop(arr, 2));
+	const arrSums = arrGroupedByThreeConsecutiveItems.map(_.sum);
+	return solve1(arrSums);
 };
 
 const processInput = (input: string): any => {
@@ -38,14 +38,14 @@ describe.skip('Part 1', () => {
 	});
 });
 
-describe('Part 2', () => {
+describe.skip('Part 2', () => {
 	it('Test Case 1', () => {
 		const result = solve2(processInput(exampleInput));
 		result; //?
 		assert.deepEqual(result, 5);
 	});
 
-	it.skip('Result', () => {
+	it('Result', () => {
 		const result = solve2(processInput(puzzleInput));
 		result; //?
 		assert.deepEqual(result, null);
