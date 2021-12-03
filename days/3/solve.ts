@@ -8,11 +8,10 @@ const mostCommonBit = (arr: any[]) => (index: number) => {
 	return countOccur['0'] > countOccur['1'] ? 0 : 1;
 }
 
-const notBit = (bit: '0' | '1') => bit === '1' ? '0' : '1';
+const notBit = (bit: 0 | 1) => 1 - bit;
 
 export const solve1 = (_arr: any[]): any => {
 	const arr = [..._arr];
-
 	const mostCommonBitInIndex = mostCommonBit(arr);
 
 	const gamma = _.range(arr[0].length)
@@ -21,6 +20,7 @@ export const solve1 = (_arr: any[]): any => {
 		.join('');
 	const epsilon = gamma
 		.split('')
+		.map(Number)
 		.map(notBit)
 		.join('');
 
@@ -36,7 +36,7 @@ function matchMCB (arr, index = 0) {
 
 function matchLCB (arr, index = 0) {
 	if (arr.length <= 1) return arr[0];
-	const lcb = 1 - mostCommonBit(arr)(index);
+	const lcb = notBit(mostCommonBit(arr)(index));
 	const filteredArray = arr.filter(value => value[index] === lcb.toString());
 	return matchLCB(filteredArray, index + 1);
 }
@@ -60,7 +60,7 @@ const processInput = (input: string): any => {
 	return n;
 };
 
-it.skip('Part 1', () => {
+it('Part 1', () => {
 	const testResult = solve1(processInput(exampleInput));
 	testResult; //?
 	assert.deepEqual(testResult, 198);
@@ -70,7 +70,7 @@ it.skip('Part 1', () => {
 	assert.deepEqual(result, 2003336);
 });
 
-it.skip('Part 2', () => {
+it('Part 2', () => {
 	const testResult = solve2(processInput(exampleInput));
 	testResult; //?
 	assert.deepEqual(testResult, 230);

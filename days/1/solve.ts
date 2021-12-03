@@ -10,8 +10,8 @@ export const solve1 = (_arr: any[]): any => {
 
 export const solve2 = (_arr: any[]): any => {
 	const arr = [..._arr];
-	const arrGroupedByThreeConsecutiveItems = _.zip(arr, _.drop(arr), _.drop(arr, 2));
-	const arrSums = arrGroupedByThreeConsecutiveItems.map(_.sum);
+	const arrGroupsOfThreeConsecutiveItems = _.zip(arr, _.drop(arr), _.drop(arr, 2));
+	const arrSums = arrGroupsOfThreeConsecutiveItems.map(_.sum);
 	return solve1(arrSums);
 };
 
