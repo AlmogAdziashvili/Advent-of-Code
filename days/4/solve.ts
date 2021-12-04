@@ -8,17 +8,17 @@ const hasBoardWon = (board: number[][], numbers: number[]) => {
 	return rowsAndCols.some(l => _.intersection(numbers, l).length === l.length);
 }
 
-const calcBoard = (board: number[][], drawnNumbers: number[]) => {
+const calcBoardScore = (board: number[][], drawnNumbers: number[]) => {
 	const boardNumbers = _.flatten(board).map(Number);
 	const diff = _.difference(boardNumbers, drawnNumbers);
 	return _.sum(diff);
 }
 
-const playUntilWin = (boards: number[][][], allNumbers: number[], index = 1) => {
-	const drawnNumbers = _.take(allNumbers, index);
+const playUntilWin = (boards: number[][][], allNumbers: number[], round = 1) => {
+	const drawnNumbers = _.take(allNumbers, round);
 	const winner = boards.find(b => hasBoardWon(b, drawnNumbers));
-	if (winner) return calcBoard(winner, drawnNumbers) * _.last(drawnNumbers);
-	return playUntilWin(boards, allNumbers, index + 1);
+	if (winner) return calcBoardScore(winner, drawnNumbers) * _.last(drawnNumbers);
+	return playUntilWin(boards, allNumbers, round + 1);
 }
 
 export const solve1 = (_arr: any[]): any => {
@@ -28,11 +28,11 @@ export const solve1 = (_arr: any[]): any => {
 	return playUntilWin(boards, numbers);
 };
 
-const playUntilLastWin = (boards: number[][][], allNumbers: number[], index = 1) => {
-	const drawnNumbers = _.take(allNumbers, index);
+const playUntilLastWin = (boards: number[][][], allNumbers: number[], round = 1) => {
+	const drawnNumbers = _.take(allNumbers, round);
 	const winners = boards.filter(b => hasBoardWon(b, drawnNumbers));
-	if (boards.length === winners.length) return calcBoard(_.first(boards), drawnNumbers) * _.last(drawnNumbers);
-	return playUntilLastWin(_.difference(boards, winners), allNumbers, index + 1);
+	if (boards.length === winners.length) return calcBoardScore(_.first(boards), drawnNumbers) * _.last(drawnNumbers);
+	return playUntilLastWin(_.difference(boards, winners), allNumbers, round + 1);
 }
 
 export const solve2 = (_arr: any[]): any => {
