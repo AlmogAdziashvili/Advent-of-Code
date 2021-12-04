@@ -60,7 +60,7 @@ const processInput = (input: string): any => {
 	return n;
 };
 
-it('Part 1', () => {
+it.skip('Part 1', () => {
 	const testResult = solve1(processInput(exampleInput));
 	testResult; //?
 	assert.deepEqual(testResult, 198);
@@ -70,7 +70,7 @@ it('Part 1', () => {
 	assert.deepEqual(result, 2003336);
 });
 
-it('Part 2', () => {
+it.skip('Part 2', () => {
 	const testResult = solve2(processInput(exampleInput));
 	testResult; //?
 	assert.deepEqual(testResult, 230);
