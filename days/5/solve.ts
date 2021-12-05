@@ -30,7 +30,7 @@ const processInput = (input: string): any => {
 	return n;
 };
 
-it('Part 1', () => {
+it.skip('Part 1', () => {
 	const testResult = solve1(processInput(exampleInput));
 	testResult; //?
 	assert.deepEqual(testResult, 5);
