@@ -20,23 +20,31 @@ const processInput = (input: string): any => {
 	return n;
 };
 
-it('Part 1', () => {
-	const testResult = solve1(processInput(exampleInput));
-	testResult; //?
-	assert.deepEqual(testResult, null);
+if (globalThis.it) {
+	it('Part 1', () => {
+		const testResult = solve1(processInput(exampleInput));
+		testResult; //?
+		assert.deepEqual(testResult, null);
 
-	const result = solve1(processInput(puzzleInput));
-	result; //?
-	assert.deepEqual(result, null);
-});
+		const result = solve1(processInput(puzzleInput));
+		result; //?
+		assert.deepEqual(result, null);
+	});
 
-it('Part 2', () => {
-	const testResult = solve2(processInput(exampleInput));
-	testResult; //?
-	assert.deepEqual(testResult, null);
+	it('Part 2', () => {
+		const testResult = solve2(processInput(exampleInput));
+		testResult; //?
+		assert.deepEqual(testResult, null);
 
-	const result = solve2(processInput(puzzleInput));
-	result; //?
-	assert.deepEqual(result, null);
-});
-
+		const result = solve2(processInput(puzzleInput));
+		result; //?
+		assert.deepEqual(result, null);
+	});
+} else {
+	console.time('part1');
+	console.log('Part 1 Solution: ', solve1(processInput(puzzleInput)));
+	console.timeEnd('part1');
+	console.time('part2');
+	console.log('Part 2 Solution: ', solve2(processInput(puzzleInput)));
+	console.timeEnd('part2');
+}
