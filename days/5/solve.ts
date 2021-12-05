@@ -8,11 +8,10 @@ export const solve1 = (_arr: any[], includeDiagonal = false): any => {
 		const [[startX, startY], [endX, endY]] = _.sortBy(cur, point => point[0]);
 		if (!includeDiagonal && startX !== endX && startY !== endY) return acc;
 		const coordinates = _.zip(_.range(startX, endX + 1), _.range(startY, endY + (endY > startY ? 1 : -1)))
-			.map(([x, y]) => JSON.stringify([x ?? startX, y ?? startY]));
+			.map(([x, y]) => ([x ?? startX, y ?? startY]));
 		return [...acc, ...coordinates];
 	}, []);
-	const stringCoordinates = coordinates.map(JSON.stringify);
-	const groups = _.countBy(stringCoordinates);
+	const groups = _.countBy(coordinates);
 	return _.values(groups).filter(v => v >= 2).length;
 };
 
@@ -31,7 +30,7 @@ const processInput = (input: string): any => {
 	return n;
 };
 
-it.skip('Part 1', () => {
+it('Part 1', () => {
 	const testResult = solve1(processInput(exampleInput));
 	testResult; //?
 	assert.deepEqual(testResult, 5);
