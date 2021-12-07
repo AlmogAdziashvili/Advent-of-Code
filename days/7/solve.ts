@@ -4,22 +4,22 @@ import _ from 'lodash';
 
 export const solve1 = (_arr: any[]): any => {
 	const arr = [..._arr];
-	const map = _.range(_.min(arr), _.max(arr) + 1).reduce((acc, p) => {
-		return { ...acc, [p]: arr.reduce((a, b) => a + Math.abs(p - b), 0) };
-	}, {});
-	const optimizedPosition = _.minBy(_.keys(map), key => map[key]);
-	return map[optimizedPosition];
+	const map = _.range(_.min(arr), _.max(arr) + 1).reduce((acc, p) => ({
+		...acc,
+		[p]: arr.reduce((a, b) => a + Math.abs(p - b), 0),
+	}), {});
+	return _.min(_.values(map));
 };
 
-const sequenceSum = n => n * (n-1) / 2
+const sequenceSum = n => n * (n - 1) / 2;
 
 export const solve2 = (_arr: any[]): any => {
 	const arr = [..._arr];
-	const map = _.range(_.min(arr), _.max(arr) + 1).reduce((acc, p) => {
-		return { ...acc, [p]: arr.reduce((a, b) => a + sequenceSum(Math.abs(p - b) + 1), 0) };
-	}, {});
-	const optimizedPosition = _.minBy(_.keys(map), key => map[key]);
-	return map[optimizedPosition];
+	const map = _.range(_.min(arr), _.max(arr) + 1).reduce((acc, p) => ({
+		...acc,
+		[p]: arr.reduce((a, b) => a + sequenceSum(Math.abs(p - b) + 1), 0),
+	}), {});
+	return _.min(_.values(map));
 };
 
 const processInput = (input: string): any => {
