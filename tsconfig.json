@@ -4,6 +4,7 @@
     "module": "commonjs",
     "lib": ["es2015", "dom"],
     "strict": false,
-    "esModuleInterop": true
+    "esModuleInterop": true,
+    "downlevelIteration": true,
   }
 }
