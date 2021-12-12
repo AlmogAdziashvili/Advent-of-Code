@@ -37,7 +37,14 @@ const processInput = (input: string): any => {
 		input.split('\n')
 			.map(n => n.trim())
 			.filter((v) => !!v)
-			.reduce((acc, cur) => ({...acc, [cur.split('-')[0]]: [...(acc[cur.split('-')[0]] || []),  cur.split('-')[1]], [cur.split('-')[1]]: [...(acc[cur.split('-')[1]] || []),  cur.split('-')[0]]}), {});
+			.reduce((acc, cur) => {
+				const [node1, node2] = cur.split('-');
+				return {
+					...acc,
+					[node1]: [...(acc[node1] || []), node2],
+					[node2]: [...(acc[node2] || []), node1],
+				}
+			}, {});
 	return n;
 };
 
