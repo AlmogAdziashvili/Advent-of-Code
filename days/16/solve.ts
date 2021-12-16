@@ -1,6 +1,6 @@
 import { exampleInput, puzzleInput } from "./puzzle-input";
 import { assert } from 'chai';
-import _, { values } from 'lodash';
+import _ from 'lodash';
 
 let sum = 0;
 const addToGlobalVersionSum = (value: number) => sum += value;
@@ -16,23 +16,23 @@ const getLiteralValue = (arr: string[]) => {
 }
 
 const handleOperation = (type: number) => (subPacketsValues: number[]) => {
+	const [value, other] = subPacketsValues;
 	switch (type) {
 		case 0:
 			return _.sum(subPacketsValues);
 		case 1:
-			return subPacketsValues.reduce((a, b) => a * b, 1);
+			return subPacketsValues.reduce(_.multiply)
 		case 2:
 			return _.min(subPacketsValues);
 		case 3:
 			return _.max(subPacketsValues);
 		case 5:
-			return subPacketsValues[0] > subPacketsValues[1] ? 1 : 0;
+			return Number(_.gt(value, other));
 		case 6:
-			return subPacketsValues[0] < subPacketsValues[1] ? 1 : 0;
+			return Number(_.lt(value, other));
 		case 7:
-			return subPacketsValues[0] === subPacketsValues[1] ? 1 : 0;
+			return Number(_.eq(value, other));
 	}
-	return 0;
 }
 
 const evaluatePackets = (arr: string[]): [string[], number] => {
