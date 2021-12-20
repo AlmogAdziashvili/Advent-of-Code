@@ -22,7 +22,7 @@ const getBinary = (inputImage: string[][], i: number, j: number) => {
 
 const enhanceImage = (algorithm: string[], inputImage: string[][], n: number): string[][] => {
 	if (!n) return inputImage;
-	const padWith = algorithm[0] === '#' ? n % 2 === 0 ? algorithm[511] : algorithm[0] : algorithm[0];
+	const padWith = algorithm[0] === '#' ? n % 2 === 0 ? algorithm[511] : '#' : '.';
 	const paddedInput = padInputImage(inputImage, padWith);
 	const outputImage = [];
 	for (let i = 1; i < paddedInput.length - 1; i++) {
