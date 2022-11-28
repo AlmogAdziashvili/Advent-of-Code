@@ -2,12 +2,12 @@ module.exports = function (w) {
 
 	return {
 		files: [
-			'./days/**/puzzle-input.ts',
-			'./days/**/input.txt',
-			'./days/**/input_example.txt'
+			'./2019/**/puzzle-input.ts',
+			'./2019/**/input.txt',
+			'./2019/**/input_example.txt'
 		],
 		tests: [
-			'./days/**/solve.ts',
+			'./2019/**/solve.ts',
 		],
 		env: {
 			type: 'node'
