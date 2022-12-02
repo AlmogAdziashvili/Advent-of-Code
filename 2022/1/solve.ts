@@ -24,7 +24,7 @@ const processInput = (input: string): any => {
 };
 
 if (globalThis.it) {
-	it('Part 1', () => {
+	it.skip('Part 1', () => {
 		const testResult = solve1(processInput(exampleInput));
 		testResult; //?
 		assert.deepEqual(testResult, 24000);
@@ -34,7 +34,7 @@ if (globalThis.it) {
 		assert.deepEqual(result, 71780);
 	});
 
-	it('Part 2', () => {
+	it.skip('Part 2', () => {
 		const testResult = solve2(processInput(exampleInput));
 		testResult; //?
 		assert.deepEqual(testResult, 45000);
