@@ -4,7 +4,7 @@
   "description": "> Advent of Code is an annual set of Christmas-themed computer programming challenges that follow an Advent calendar and can be solved using any programming language",
   "main": "wallaby.js",
   "scripts": {
-    "start": "ts-node ./days/$DAY/solve.ts"
+    "start": "ts-node 2022/days/9/solve.ts"
   },
   "repository": {
     "type": "git",
@@ -27,7 +27,7 @@
     "heap-js": "^2.1.6",
     "lodash": "^4.17.21",
     "mocha": "^10.1.0",
-    "ts-node": "^10.4.0",
+    "ts-node": "^10.9.1",
     "typescript": "^3.2.1"
   }
 }
