@@ -87,10 +87,8 @@ export const solve2 = (_arr: any[]): any => {
 		}, []);
 	}
 	const p1 = permutations(Object.keys(costMap));
-	console.log(p1.length);
 	const p2 = p1.map(p => _.difference(Object.keys(costMap), p));
 	return _.max(_.range(0, p1.length).map(i => {
-		console.log(`running ${i} of ${p1.length}`);
 		const p1Score = maxPath(arr, costMap, undefined, undefined, 26, p2[i]);
 		const p2Score = maxPath(arr, costMap, undefined, undefined, 26, p1[i]);
 		return p1Score + p2Score;
@@ -134,9 +132,9 @@ if (globalThis.it) {
 		assert.deepEqual(result, null);
 	});
 } else {
-	// console.time('part1');
-	// console.log('Part 1 Solution: ', solve1(processInput(puzzleInput)));
-	// console.timeEnd('part1');
+	console.time('part1');
+	console.log('Part 1 Solution: ', solve1(processInput(puzzleInput)));
+	console.timeEnd('part1');
 	console.time('part2');
 	console.log('Part 2 Solution: ', solve2(processInput(puzzleInput)));
 	console.timeEnd('part2');
