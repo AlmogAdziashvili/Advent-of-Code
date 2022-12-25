@@ -72,7 +72,7 @@ if (globalThis.it) {
 		assert.deepEqual(result, 110181395003396);
 	});
 
-	it('Part 2', () => {
+	it.skip('Part 2', () => {
 		const testResult = solve2(processInput(exampleInput));
 		testResult; //?
 		assert.deepEqual(testResult, 301);
