@@ -74,6 +74,8 @@ export const solve1 = (_arr: any[]): any => {
 	return steps / 2;
 };
 
+const positionsOfLoop = {};
+
 export const solve2 = (_arr: any[]): any => {
 	const arr = [..._arr];
 	const sRow = arr.findIndex(l => l.findIndex(c => c === 'S') > -1);
@@ -84,7 +86,9 @@ export const solve2 = (_arr: any[]): any => {
 	while (arr[currentPos[0]][currentPos[1]] !== 'S') {
 		steps++;
 		const currentPipe = arr[currentPos[0]][currentPos[1]];
-		arr[currentPos[0]][currentPos[1]] = chalk.yellow('$');
+		arr[currentPos[0]][currentPos[1]] = chalk.yellow(currentPipe);
+		positionsOfLoop[currentPos.join(',')] = true;
+
 		if (currentPipe === '|') {
 			if (fromDir === 'N') {
 				currentPos[0]++;
@@ -143,46 +147,46 @@ export const solve2 = (_arr: any[]): any => {
 			}
 		}
 	}
-	const pool = [];
 	for (let i = 0; i < arr.length; i++) {
-		if (arr[i][0] !== '$')  pool.push([i, 0]);
-		if (arr[i][arr[0].length - 1] !== '$')  pool.push([i, arr[0].length - 1]);
-	}
-	for (let i = 0; i < arr[0].length; i++) {
-		if (arr[0][i] !== '$')  pool.push([0, i]);
-		if (arr[arr.length - 1][i] !== '$')  pool.push([arr.length - 1, i]);
-	}
-	while (pool.length > 0) {
-		const [row, col] = pool.shift()!;
-		if (arr[row][col] === chalk.yellow('$')) {
-			continue;
-		}
-		arr[row][col] = ' ';
-		if ((col < arr[0].length - 1) && arr[row][col + 1] !== '$' && arr[row][col + 1] !== ' ') {
-			pool.push([row, col + 1]);
-		}
-		if (col && arr[row][col - 1] !== '$' && arr[row][col - 1] !== ' ') {
-			pool.push([row, col - 1]);
-		}
-		if ((row < (arr.length - 1)) && arr[row + 1][col] !== '$' && arr[row + 1][col] !== ' ') {
-			pool.push([row + 1, col]);
-		}
-		if (row && arr[row - 1][col] !== '$' && arr[row - 1][col] !== ' ') {
-			pool.push([row - 1, col]);
-		}
-	}
-	let innerTiles = 0;
-	for (let i = 0; i < arr.length; i++) {
-		for (let j = 0; j < arr[i].length; j++) {
-			const val = arr[i][j];
-			if (val !== ' ' && val !== chalk.yellow('$') && val !== 'S') {
-				arr[i][j] = chalk.red(val);
-				innerTiles++;
+		for (let j = 0; j < arr[0].length; j++) {
+			if (!positionsOfLoop[`${i},${j}`]) {
+				arr[i][j] = '.';
 			}
 		}
 	}
+
+	let lastCorner = null;
+	let insideTiles = 0;
+	let isInside = false;
+	for (let i = 0; i < arr.length; i++) {
+		lastCorner = null;
+		isInside = false;
+		for (let j = 0; j < arr[0].length; j++) {
+			if (arr[i][j] === '|') isInside = !isInside;
+			if (arr[i][j] === '-') continue;
+			if (arr[i][j] === 'F') lastCorner = 'F';
+			if (arr[i][j] === 'J') {
+				if (lastCorner === 'F') {
+					isInside = !isInside;
+				}
+				lastCorner = null;
+			}
+			if (arr[i][j] === 'L') lastCorner = 'L';
+			if (arr[i][j] === '7') {
+				if (lastCorner === 'L') {
+					isInside = !isInside;
+				}
+				lastCorner = null;
+			}
+			if (arr[i][j] === '.' && isInside) {
+				insideTiles++;
+				arr[i][j] = 'X';
+			}
+		}
+	}
+
 	console.log(arr.map(l => l.join('')).join('\n'));
-	return innerTiles;
+	return insideTiles;
 };
 
 const processInput = (input: string): any => {
