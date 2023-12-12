@@ -80,8 +80,8 @@ export const solve2 = (_arr: any[]): any => {
 	const arr = [..._arr];
 	const sRow = arr.findIndex(l => l.findIndex(c => c === 'S') > -1);
 	const sCol = arr[sRow].findIndex(c => c === 'S');
-	let currentPos = [sRow, sCol - 1];
-	let fromDir = 'E';
+	let currentPos = [sRow - 1, sCol];
+	let fromDir = 'S';
 	let steps = 1;
 	while (arr[currentPos[0]][currentPos[1]] !== 'S') {
 		steps++;
