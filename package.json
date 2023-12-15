@@ -24,6 +24,7 @@
     "@types/node": "^12.12.14",
     "axios": "^1.2.0",
     "chai": "^4.2.0",
+    "hash-sum": "^2.0.0",
     "heap-js": "^2.1.6",
     "lodash": "^4.17.21",
     "lodash.permutations": "^1.0.0",
